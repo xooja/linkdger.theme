@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our story · {{ shop.name }}</title>
+<meta name="description" content="The story of {{ shop.name }}.">
+<meta name="theme-color" content="#0E0F13">
+<link rel="stylesheet" href="/style.css">
+</head>
+<!-- An extra page of the theme: story.html opens at /story. It shows more of LINKDGER's kit: typewriter, parallax layers, a scroll
+     scrub, a pinned 3D scene with captions, layers that follow the pointer and clip reveals. Write your own story here. -->
+<body data-lk-cursor="ring">
+
+<header class="top">
+  <a class="brand" href="/"><lk-shop-logo></lk-shop-logo><span>{{ shop.name }}</span></a>
+  <nav class="links" aria-label="Pages"><a href="/products">Shop</a><a href="/story">Story</a><a href="/reviews">Reviews</a><a href="/about">About</a></nav>
+  <div class="actions"><lk-signin-button text="Sign in"></lk-signin-button><lk-cart-button text="Cart"></lk-cart-button></div>
+</header>
+
+<main>
+  <section class="story-intro">
+    <p class="kicker" data-lk-animate="fade-up">Our story</p>
+    <h1 data-lk-typewriter="55">Every shop has a story.</h1>
+    <p data-lk-split="words" data-lk-animate="fade-up" data-lk-delay="900">This is where yours goes: how {{ shop.name }} started, what you care about and who you serve.</p>
+  </section>
+
+  <!-- Parallax: each word moves at its own speed as the page scrolls (negative = the other way). -->
+  <section class="layers" aria-hidden="true">
+    <span class="l1" data-lk-parallax="0.25">Since day one</span>
+    <span class="l2" data-lk-parallax="-0.2">Made with care</span>
+    <span class="l3" data-lk-parallax="0.4">Near you</span>
+  </section>
+
+  <!-- A scroll scrub: values follow the scroll while the element crosses the screen. -->
+  <section class="quote">
+    <p data-lk-scroll="scale 0.82 1.04; rotate -3 0; opacity 0.25 1">We sell what we would buy <em>ourselves</em>.</p>
+  </section>
+
+  <!-- A pinned 3D scene (3d/studio.json): the small moon moves through the scene's scroll keyframes; the captions change with
+       --lk-progress in the CSS. -->
+  <section class="orbit" data-lk-pin>
+    <div class="orbit-stage">
+      <lk-scene src="/3d/studio.json" alt="A small moon going round an orange planet"></lk-scene>
+      <div class="orbit-cap">
+        <h2>It started small.</h2>
+        <h2>It grew with our customers.</h2>
+        <h2>Today it is yours to explore.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- data-lk-pointer: --lk-mx and --lk-my (-1 to 1) follow the mouse or finger; the CSS moves each layer by its own --d. -->
+  <section class="pointer-box" data-lk-pointer>
+    <i class="p p1"></i><i class="p p2"></i><i class="p p3"></i><i class="p p4"></i>
+    <h2 data-lk-animate="blur-in">Move your mouse or finger here</h2>
+  </section>
+
+  <!-- Clip reveals with a stagger: put your own photos in these tiles. -->
+  <section class="tiles" data-lk-stagger="140">
+    <div class="t1" data-lk-animate="clip-up">Your photo here</div>
+    <div class="t2" data-lk-animate="clip-up">The team</div>
+    <div class="t3" data-lk-animate="clip-up">The shop</div>
+  </section>
+
+  <section class="end">
+    <h2 data-lk-split="chars" data-lk-animate="fade-up">Come and see.</h2>
+    <a class="btn" href="/products" data-lk-magnetic="0.35" data-lk-hover="glow">Shop {{ shop.name }}</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>© {{ year }} {{ shop.name }}</span>
+  <nav aria-label="More"><a href="/">Home</a><a href="/products">Shop</a><a href="/reviews">Reviews</a><a href="/orders">Your orders</a><a href="/cart">Cart</a></nav>
+</footer>
+</body>
+</html>

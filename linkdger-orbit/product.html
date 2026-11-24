@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ product.name }} · {{ shop.name }}</title>
+<meta name="description" content="{{ product.description }}">
+<meta name="theme-color" content="#0E0F13">
+<link rel="stylesheet" href="/style.css">
+</head>
+<!-- product.html designs every product page (/p/...). The {{ product.* }} values, the photos (<lk-product-gallery>) and
+     <lk-add-to-cart> are the product's live data from the shop. -->
+<body>
+
+<header class="top">
+  <a class="brand" href="/"><lk-shop-logo></lk-shop-logo><span>{{ shop.name }}</span></a>
+  <nav class="links" aria-label="Pages"><a href="/products">Shop</a><a href="/story">Story</a><a href="/reviews">Reviews</a><a href="/about">About</a></nav>
+  <div class="actions"><lk-signin-button text="Sign in"></lk-signin-button><lk-cart-button text="Cart"></lk-cart-button></div>
+</header>
+
+<main>
+  <section class="product">
+    <div data-lk-animate="fade-up"><lk-product-gallery></lk-product-gallery></div>
+    <div class="product-info">
+      <p class="kicker" data-lk-animate="fade-up">{{ product.category }}</p>
+      <h1 data-lk-animate="fade-up" data-lk-delay="80">{{ product.name }}</h1>
+      <p class="price" data-lk-animate="fade-up" data-lk-delay="160">{{ product.price }} <small>{{ product.unit }}</small></p>
+      <p class="stock">{{ product.stock }}</p>
+      <lk-add-to-cart text="Add to cart"></lk-add-to-cart>
+      <lk-chat-button text="Ask about this product"></lk-chat-button>
+      <p class="about">{{ product.description }}</p>
+    </div>
+  </section>
+
+  <section class="shop">
+    <div class="shop-head"><h2 data-lk-animate="fade-up">More from {{ shop.name }}</h2><a class="more" href="/products">See all →</a></div>
+    <div data-lk-stagger="70">
+      <lk-products limit="4">
+        <article class="card" data-lk-animate="rise" data-lk-tilt="7" data-lk-glare>
+          <a class="card-img" href="{{ item.url }}"><img src="{{ item.image }}" alt="{{ item.name }}" loading="lazy"></a>
+          <a class="card-name" href="{{ item.url }}">{{ item.name }}</a>
+          <p class="card-price"><b>{{ item.price }}</b><s>{{ item.old }}</s><small>{{ item.pack }}</small></p>
+          <lk-add-to-cart text="Add to cart"></lk-add-to-cart>
+        </article>
+      </lk-products>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>© {{ year }} {{ shop.name }}</span>
+  <nav aria-label="More"><a href="/">Home</a><a href="/products">Shop</a><a href="/story">Story</a><a href="/orders">Your orders</a><a href="/cart">Cart</a></nav>
+</footer>
+</body>
+</html>

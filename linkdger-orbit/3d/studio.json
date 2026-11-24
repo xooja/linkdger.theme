@@ -1,0 +1,26 @@
+{
+  "background": "transparent",
+  "environment": "studio",
+  "exposure": 1,
+  "camera": { "fov": 30, "position": [0, 0.6, 6], "target": [0, 0, 0] },
+  "lights": [
+    { "type": "ambient", "intensity": 0.4 },
+    { "type": "point", "position": [-2.5, 1.5, 1], "intensity": 14, "color": "#FF7A45" },
+    { "type": "point", "position": [2.5, -1, 2], "intensity": 8, "color": "#8FB8FF" }
+  ],
+  "objects": [
+    { "shape": "torus", "size": [1.5], "tube": 0.04, "rotation": [1.2, 0, 0],
+      "material": { "color": "#FF7A45", "emissive": "#FF7A45", "emissiveIntensity": 0.6, "roughness": 0.4 }, "spin": [0, 0, 0.12] },
+    { "shape": "torus", "size": [2.1], "tube": 0.02, "rotation": [1.35, 0.3, 0],
+      "material": { "color": "#3A4050", "roughness": 0.5 }, "spin": [0, 0, -0.08] },
+    { "shape": "sphere", "size": [0.55], "material": { "color": "#FF7A45", "metalness": 0.3, "roughness": 0.25 }, "follow": 0.3 },
+    { "shape": "sphere", "size": [0.14], "position": [1.5, 0, 0], "material": { "color": "#F5F6F8", "roughness": 0.3 }, "float": { "height": 0.2, "speed": 1.4 } }
+  ],
+  "particles": { "count": 260, "size": 0.02, "color": "#FFB08A", "area": [10, 6, 6], "speed": 0.08 },
+  "pointer": { "camera": 0.4 },
+  "scroll": [
+    { "at": 0, "camera": { "position": [0, 0.6, 6] }, "objects": { "3": { "position": [1.5, 0, 0] } } },
+    { "at": 0.5, "camera": { "position": [0.8, 1.6, 5] }, "objects": { "3": { "position": [0, 0.2, 1.5] } } },
+    { "at": 1, "camera": { "position": [0, 2.6, 4.2] }, "objects": { "3": { "position": [-1.5, 0, 0] } } }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Orbit, the LINKDGER example theme",
+  "colors": {
+    "accent": "#FF7A45",
+    "background": "#0E0F13",
+    "surface": "#171A21",
+    "text": "#F5F6F8",
+    "muted": "#A0A6B1"
+  },
+  "fonts": {
+    "body": { "family": "Inter", "file": "fonts/inter.woff2" },
+    "heading": { "family": "Inter", "file": "fonts/inter.woff2" }
+  }
+}

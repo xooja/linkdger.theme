@@ -1,0 +1,34 @@
+{
+  "background": "transparent",
+  "environment": "studio",
+  "exposure": 1.05,
+  "fog": { "color": "#0E0F13", "near": 7, "far": 18 },
+  "camera": { "fov": 32, "position": [0, 0.25, 7.4], "target": [0, -0.45, 0] },
+  "lights": [
+    { "type": "ambient", "intensity": 0.35 },
+    { "type": "directional", "position": [3, 5, 4], "intensity": 1.5, "shadow": true },
+    { "type": "point", "position": [-1.6, 1.4, -1.5], "intensity": 26, "color": "#FF7A45" },
+    { "type": "point", "position": [3.5, -0.4, 2.5], "intensity": 10, "color": "#8FB8FF" }
+  ],
+  "objects": [
+    { "model": "/3d/bottle.glb", "fit": 2.3, "position": [1.05, 0.15, 0], "rotation": [0, 0.4, 0.06], "spin": [0, 0.3, 0],
+      "float": { "height": 0.08, "speed": 1.1 }, "follow": 0.25, "shadow": true },
+    { "model": "/3d/gift.glb", "fit": 1.6, "position": [2.15, -0.5, -0.7], "rotation": [0.12, 0.6, 0],
+      "float": { "height": 0.1, "speed": 0.85 }, "follow": 0.2, "shadow": true },
+    { "shape": "torusknot", "size": [0.32], "tube": 0.1, "position": [0.35, 1.45, -1.6],
+      "material": { "color": "#FF7A45", "metalness": 0.7, "roughness": 0.18 }, "spin": [0.5, 0.35, 0], "float": { "height": 0.12, "speed": 0.7 } },
+    { "shape": "sphere", "size": [0.3], "position": [-1.25, 1.25, -0.6],
+      "material": { "color": "#F5F6F8", "metalness": 0.1, "roughness": 0.12, "clearcoat": 1 }, "float": { "height": 0.14, "speed": 1.3 }, "follow": 0.35 },
+    { "shape": "icosahedron", "size": [0.22], "detail": 0, "position": [-2.6, 0.4, -2.2],
+      "material": { "color": "#2A2F3A", "metalness": 0.4, "roughness": 0.3, "flat": true }, "spin": [0.3, 0.6, 0.2] },
+    { "shape": "plane", "size": [14, 14], "rotation": [-1.5708, 0, 0], "position": [0, -1.25, 0],
+      "material": { "color": "#14161C", "roughness": 1 }, "receiveShadow": true }
+  ],
+  "particles": { "count": 520, "size": 0.022, "color": "#FFB08A", "area": [12, 6, 8], "speed": 0.1 },
+  "pointer": { "camera": 0.35 },
+  "scroll": [
+    { "at": 0, "camera": { "position": [0, 0.25, 7.4], "target": [0, -0.45, 0] } },
+    { "at": 0.6, "camera": { "position": [2.0, 0.9, 5.6], "target": [1.1, 0, 0] }, "objects": { "0": { "rotation": [0, 3.6, 0.06] }, "1": { "rotation": [0.12, 2.2, 0] } } },
+    { "at": 1, "camera": { "position": [3.4, 1.5, 3.9], "target": [1.3, -0.1, 0] }, "objects": { "0": { "rotation": [0, 6.68, 0.06] }, "1": { "rotation": [0.12, 3.8, 0] } } }
+  ]
+}

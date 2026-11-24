@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Not found · {{ shop.name }}</title>
+<meta name="theme-color" content="#0E0F13">
+<link rel="stylesheet" href="/style.css">
+</head>
+<!-- 404.html shows for an address the theme does not have. -->
+<body>
+
+<header class="top">
+  <a class="brand" href="/"><lk-shop-logo></lk-shop-logo><span>{{ shop.name }}</span></a>
+  <nav class="links" aria-label="Pages"><a href="/products">Shop</a><a href="/story">Story</a><a href="/reviews">Reviews</a><a href="/about">About</a></nav>
+  <div class="actions"><lk-signin-button text="Sign in"></lk-signin-button><lk-cart-button text="Cart"></lk-cart-button></div>
+</header>
+
+<main class="lost">
+  <lk-model src="/3d/gift.glb" alt="A gift box turning slowly" auto-rotate camera-controls="false" exposure="1.1" shadow-intensity="1"></lk-model>
+  <div>
+    <p class="kicker" data-lk-animate="fade-up">Page not found</p>
+    <h1 data-lk-animate="fade-up" data-lk-delay="80">This page drifted out of orbit.</h1>
+    <p data-lk-animate="fade-up" data-lk-delay="160">The link may be old. Everything {{ shop.name }} sells is one tap away.</p>
+    <a class="btn" href="/products" data-lk-magnetic="0.3">See all products</a>
+  </div>
+</main>
+
+<footer class="foot">
+  <span>© {{ year }} {{ shop.name }}</span>
+  <nav aria-label="More"><a href="/">Home</a><a href="/products">Shop</a><a href="/orders">Your orders</a><a href="/cart">Cart</a></nav>
+</footer>
+</body>
+</html>
