@@ -42,7 +42,7 @@ the `<lk-scene>`, `<lk-model>`, `<lk-rive>` and `<lk-lottie>` tags.
 ## Upload it
 
 1. Zip this folder (the zip may have the folder inside it, or the files at its top).
-2. In the LINKDGER app: My shop → Edit shop → Website and theme → Your own theme → Upload a theme (.zip). Pro, Max and VIP.
+2. In the LINKDGER app: My shop → Settings → Website and theme → Your own theme → Upload a theme (.zip). Pro, Max and VIP.
 3. Open the preview link, check every page, then tap Make live.
 
 README and LICENSE files are skipped when you upload; they never show on your site.

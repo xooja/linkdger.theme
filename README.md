@@ -11,7 +11,7 @@ start of your own.
 1. Download this repository (Code → Download ZIP) or clone it.
 2. Change the files in `linkdger-orbit/`: HTML, CSS, `theme.json`, `products.json`, pictures and 3D models.
 3. Zip the `linkdger-orbit` folder.
-4. In the LINKDGER app: My shop → Edit shop → Website and theme → Your own theme → Upload a theme (.zip). For shops on Pro, Max and VIP.
+4. In the LINKDGER app: My shop → Settings → Website and theme → Your own theme → Upload a theme (.zip). For shops on Pro, Max and VIP.
 5. Open the preview link, check every page on a phone and a computer, then tap Make live.
 
 A page opened from your computer shows the `{{ values }}` as written and no animation. Upload it and open the preview link to see it with your
