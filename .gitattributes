@@ -1,0 +1,8 @@
+# Text files keep Unix line ends on every computer; pictures, 3D models and fonts are binary.
+* text=auto eol=lf
+*.webp binary
+*.png binary
+*.jpg binary
+*.glb binary
+*.woff2 binary
+*.zip binary

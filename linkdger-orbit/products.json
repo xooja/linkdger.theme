@@ -1,0 +1,23 @@
+{
+  "products": [
+    {
+      "sku": "ORBIT-BOTTLE",
+      "name": "Glass Bottle 1 L",
+      "price": 1250,
+      "unit": "piece",
+      "category": "home.kitchenware",
+      "description": "A clear 1 litre glass bottle with a black metal cap. This is the example theme's sample product: change it to one of yours before you add it, or take it out of products.json.",
+      "photos": ["products/bottle-1.webp", "products/bottle-2.webp"],
+      "packs": [{ "name": "Set of 3", "price": 3500 }]
+    },
+    {
+      "sku": "ORBIT-GIFT",
+      "name": "Gift Box",
+      "price": 2400,
+      "unit": "box",
+      "category": "toys.gifts",
+      "description": "A gift box with a white ribbon and bow. This is the example theme's sample product: change it to one of yours before you add it, or take it out of products.json.",
+      "photos": ["products/gift-1.webp", "products/gift-2.webp"]
+    }
+  ]
+}

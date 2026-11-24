@@ -61,6 +61,12 @@
       <div class="tags" data-lk-stagger="90">
         <span data-lk-animate="pop">Drag to turn</span><span data-lk-animate="pop">Pinch to zoom</span><span data-lk-animate="pop">AR on phones</span>
       </div>
+      <!-- One product by its SKU (<lk-product sku="…">, or code="…" for a product's link code): its live name, price and Add to cart, in
+           this theme's design. It shows only when the shop has the product: add the sample from products.json in the app, or use your own SKU. -->
+      <lk-product sku="ORBIT-BOTTLE">
+        <div class="buy" data-lk-animate="fade-up"><a class="buy-name" href="{{ item.url }}">{{ item.name }}</a><b class="buy-price">{{ item.price }}</b>
+          <lk-add-to-cart text="Add to cart"></lk-add-to-cart></div>
+      </lk-product>
     </div>
   </section>
 
@@ -102,14 +108,36 @@
     </div>
   </section>
 
-  <!-- 6. Numbers that count up when they come on screen (data-lk-counter). -->
+  <!-- 6. A bundle: the set "starter" from theme.json. <lk-set> shows its inside only when the shop has the set's products; {{ set.title }},
+          {{ set.count }} and {{ set.total }} are the set's; <lk-add-all> puts every product in the cart, each at its own price. -->
+  <lk-set name="starter">
+    <section class="bundle">
+      <div class="bundle-copy">
+        <p class="kicker" data-lk-animate="fade-up">Bundle</p>
+        <h2 data-lk-animate="fade-up">{{ set.title }}</h2>
+        <p class="bundle-sum" data-lk-animate="fade-up">{{ set.count }} products · <b>{{ set.total }}</b> together</p>
+        <lk-add-all set="starter" text="Add all to cart"></lk-add-all>
+      </div>
+      <div class="bundle-items" data-lk-stagger="90">
+        <lk-products set="starter">
+          <article class="card" data-lk-animate="rise" data-lk-tilt="6">
+            <a class="card-img" href="{{ item.url }}"><img src="{{ item.image }}" alt="{{ item.name }}" loading="lazy"></a>
+            <a class="card-name" href="{{ item.url }}">{{ item.name }}</a>
+            <p class="card-price"><b>{{ item.price }}</b><small>{{ item.pack }}</small></p>
+          </article>
+        </lk-products>
+      </div>
+    </section>
+  </lk-set>
+
+  <!-- 7. Numbers that count up when they come on screen (data-lk-counter). -->
   <section class="numbers" data-lk-stagger="120">
     <div data-lk-animate="fade-up"><b data-lk-counter="{{ shop.products }}">{{ shop.products }}</b><span>products</span></div>
     <div data-lk-animate="fade-up"><b data-lk-counter="{{ shop.reviews }}">{{ shop.reviews }}</b><span>reviews</span></div>
     <div data-lk-animate="fade-up"><lk-rating></lk-rating><span>from real buyers</span></div>
   </section>
 
-  <!-- 7. Visit: a looping Lottie, the shop's address, hours, directions and chat. -->
+  <!-- 8. Visit: a looping Lottie, the shop's address, hours, directions and chat. -->
   <section class="visit">
     <lk-lottie src="/anim/sun.json" loop alt="A sun with turning rays"></lk-lottie>
     <div>

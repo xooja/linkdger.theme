@@ -10,5 +10,8 @@
   "fonts": {
     "body": { "family": "Inter", "file": "fonts/inter.woff2" },
     "heading": { "family": "Inter", "file": "fonts/inter.woff2" }
+  },
+  "sets": {
+    "starter": { "title": "Starter set", "items": ["ORBIT-BOTTLE", "ORBIT-GIFT"] }
   }
 }

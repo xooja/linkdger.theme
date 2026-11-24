@@ -95,14 +95,29 @@ lk-scene.hero-scene{position:absolute;inset:0;width:100%;height:100%}
 .card-price small{color:var(--o-muted);font-size:13px;font-weight:600}
 .card .lk-add-to-cart{margin-top:auto;min-height:46px;border-radius:999px}
 
-/* 6. Numbers */
+/* 3b. The featured product's live name, price and Add to cart (<lk-product>) */
+.buy{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:26px;padding:14px 14px 14px 20px;border-radius:22px;background:var(--o-surface);border:1px solid var(--o-line)}
+.buy-name{flex:1 1 auto;font-size:19px;font-weight:800;letter-spacing:-.02em;text-decoration:none}
+.buy-price{font-size:19px}
+.buy .lk-add-to-cart{min-height:48px;border-radius:999px;padding:0 22px}
+
+/* 6. A bundle: a set from theme.json (<lk-set>, <lk-products set>, <lk-add-all>) */
+.bundle{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,72px);align-items:center;margin:0 var(--o-gutter) clamp(72px,10vw,140px);padding:clamp(24px,4vw,48px);
+ border-radius:34px;background:radial-gradient(80% 90% at 100% 0%,rgba(255,122,69,.18),transparent 60%),var(--o-surface);border:1px solid var(--o-line)}
+.bundle h2{font-size:clamp(34px,4.6vw,60px);margin:14px 0 10px}
+.bundle-sum{color:#C9CDD5;font-size:18px;margin-bottom:22px}.bundle-sum b{color:var(--o-text)}
+.lk-add-all{min-height:54px;border-radius:999px;padding:0 26px;font-size:16px;background:var(--o-accent);color:var(--o-on-accent)}
+.bundle-items .lk-products{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.bundle-items .card{background:var(--o-surface-2)}
+
+/* 7. Numbers */
 .numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 var(--o-gutter) clamp(72px,10vw,140px)}
 .numbers>div{padding:30px 26px;border-radius:26px;background:var(--o-surface);border:1px solid var(--o-line)}
 .numbers b{display:block;font-size:clamp(44px,6vw,80px);font-weight:800;letter-spacing:-.04em;line-height:1}
 .numbers span{display:block;margin-top:10px;color:var(--o-muted);font-weight:600}
 .numbers .lk-rating{display:block;font-size:clamp(30px,3.6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.1;text-decoration:none;color:var(--o-text)}
 
-/* 7. Visit */
+/* 8. Visit */
 .visit{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,72px);align-items:center;margin:0 var(--o-gutter) clamp(72px,10vw,140px);padding:clamp(28px,5vw,64px);
  border-radius:34px;background:radial-gradient(80% 90% at 0% 0%,rgba(255,122,69,.2),transparent 60%),var(--o-surface);border:1px solid var(--o-line)}
 .visit lk-lottie{height:clamp(200px,24vw,300px)}
@@ -189,7 +204,7 @@ lk-scene.hero-scene{position:absolute;inset:0;width:100%;height:100%}
 /* Tablets and phones */
 @media (max-width:980px){
  .links{display:none}.actions{margin-left:auto}
- .feature,.steps-stage,.visit,.product,.lost{grid-template-columns:1fr}
+ .feature,.steps-stage,.visit,.product,.lost,.bundle{grid-template-columns:1fr}
  .steps-stage{align-content:center;gap:10px}.steps-anim{height:min(220px,26vh)}
  .steps h2{margin:10px 0 18px}.steps li{padding:14px 16px}
  .product-info{position:static}
@@ -198,7 +213,8 @@ lk-scene.hero-scene{position:absolute;inset:0;width:100%;height:100%}
 @media (max-width:620px){
  .top{gap:10px}.brand{font-size:15px}.actions .lk-signin-button{display:none}
  .numbers{grid-template-columns:1fr}.tiles{grid-template-columns:1fr 1fr}.tiles .t3{display:none}
- .shop .lk-products,.list .lk-products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .shop .lk-products,.list .lk-products,.bundle-items .lk-products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .lk-add-all{width:100%}
  .card{padding:8px;border-radius:18px;gap:8px}.card-name{font-size:16px}.card-price b{font-size:16px}
  .card .lk-add-to-cart{min-height:42px;padding:8px 10px;font-size:14px}
  .cta .btn,.cta .lk-chat-button{flex:1 1 auto}

@@ -20,6 +20,20 @@ The full guide: https://linkdger.com/themes/guide
 | `anim/*.json` | Lottie animations for `<lk-lottie>` |
 | `img/*.webp` | Pictures shown while 3D loads, and on phones in light mode |
 | `fonts/inter.woff2` | The Inter font (SIL Open Font License 1.1, see `fonts/LICENSE.txt`) |
+| `products.json` | Two sample products the theme brings (a bottle and a gift box). After you upload, the app lists them for you to check and add |
+| `products/*.webp` | The sample products' photos |
+
+## Products and bundles
+
+- `<lk-products>` shows your shop's live products in this theme's own card.
+- `<lk-product sku="ORBIT-BOTTLE">` shows one product by its SKU (or `code="…"`, the 8 letters at the end of its address). It shows
+  nothing until your shop has that product.
+- A bundle is a set in `theme.json` (`"sets": {"starter": {"title": "Starter set", "items": ["ORBIT-BOTTLE", "ORBIT-GIFT"]}}`).
+  `<lk-set name="starter">` shows its section only when your shop has its products; `<lk-add-all set="starter">` puts every product in
+  the cart, each at its own price.
+- `products.json` lists products the theme brings, with their SKU, name, price (in your shop's currency), unit, category id, description
+  and photos. To show on your website, a product needs 2 photos, a category and a description. Change the samples to your own products,
+  or delete the file.
 
 `{{ shop.name }}` and the other `{{ ... }}` values, and the `<lk-...>` parts (products, cart, sign in, chat, search), are filled with
 your shop's live data by LINKDGER. A theme has no JavaScript: animation comes from LINKDGER's kit through `data-lk-*` attributes and
