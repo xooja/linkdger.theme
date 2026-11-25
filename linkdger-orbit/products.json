@@ -7,8 +7,12 @@
       "unit": "piece",
       "category": "home.kitchenware",
       "description": "A clear 1 litre glass bottle with a black metal cap. This is the example theme's sample product: change it to one of yours before you add it, or take it out of products.json.",
-      "photos": ["products/bottle-1.webp", "products/bottle-2.webp"],
-      "packs": [{ "name": "Set of 3", "price": 3500 }]
+      "photos": ["products/bottle-1.webp", "products/bottle-2.webp", "products/bottle-amber.webp"],
+      "packs": [
+        { "name": "Launch price", "price": 1150, "default": true },
+        { "name": "Amber", "price": 1300, "photo": "products/bottle-amber.webp" },
+        { "name": "Set of 3", "price": 3500, "count": 3 }
+      ]
     },
     {
       "sku": "ORBIT-GIFT",
@@ -17,7 +21,11 @@
       "unit": "box",
       "category": "toys.gifts",
       "description": "A gift box with a white ribbon and bow. This is the example theme's sample product: change it to one of yours before you add it, or take it out of products.json.",
-      "photos": ["products/gift-1.webp", "products/gift-2.webp"]
+      "photos": ["products/gift-1.webp", "products/gift-2.webp"],
+      "packs": [
+        { "name": "Gift wrapped", "price": 2600 },
+        { "name": "Pair", "price": 4500, "count": 2 }
+      ]
     }
   ]
 }

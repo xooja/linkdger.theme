@@ -120,6 +120,7 @@ Write `{{ name }}` anywhere in a page, also inside attributes (`alt="{{ shop.nam
 | `{{ product.image }}` | Its first photo |
 | `{{ product.rating }}` | Its rating |
 | `{{ product.stock }}` | "In stock", "Out of stock" or empty |
+| `{{ product.old }}`, `{{ product.save }}`, `{{ product.pack }}` | The chosen set's struck price, "Save Rs …" and name, or empty (section 6) |
 
 ### On products.html and category.html
 
@@ -142,6 +143,7 @@ Write `{{ name }}` anywhere in a page, also inside attributes (`alt="{{ shop.nam
 | `{{ item.url }}` | Its page on the website |
 | `{{ item.rating }}` | Its rating |
 | `{{ item.sku }}` | Its SKU |
+| `{{ item.save }}` | The default set's "Save Rs …", or empty |
 
 ### Sets (bundles)
 
@@ -168,6 +170,7 @@ Parts are LINKDGER's working pieces. Place them where you like; each comes with 
 | `<lk-rating>` | none | "★ rating · reviews", linking to the reviews: `.lk-rating` (nothing before the first review) |
 | `<lk-hours>` | none | The opening hours: `.lk-hours` |
 | `<lk-directions>` | `text` | Directions to the shop: `.lk-directions` |
+| `<lk-packs>` | `label` | On product.html: the product's sets as choices (the theme's design inside, else LINKDGER's): `.lk-packs`, `.lk-pack`, `.lk-pack.on` |
 
 Write every part with its closing tag: `<lk-cart-button text="Bag"></lk-cart-button>`.
 
@@ -221,6 +224,40 @@ A set lives in theme.json: a name (small letters, digits and `_`, up to 30) with
 
 A set a page uses but theme.json does not have shows nothing, and the check says `Not found: set "…"`.
 
+### A product's sets: variants, a sale price, bigger packs
+
+Every product in the app can have **sets** (packs), each with its own **name**, **count** (how many of the product's unit are in it), **price** and, optionally, its **own photo**; one can be the **default**. The seller makes them in the app (a new product's **Sets (packs)**; a saved product's **Manage packs**), or a theme's products.json brings them. The website shows them as the app does.
+
+| The seller wants | A set with | Buyers see |
+|---|---|---|
+| Variants: colours, sizes, designs | Count 1, its own name, photo and price | A choice for each; choosing one shows its photo, price and name, and that set goes to the cart |
+| A sale price to compare | Count 1 and a lower price | The usual price struck, the set's price and "Save Rs …" |
+| Bigger packs: a dozen, a carton | Its count (12) and its price | "Save Rs …" when it costs less than 12 bought one by one, with that total struck |
+| Options that cost more: gift wrap | Count 1 and a higher price | A choice with its own price |
+| What shows first | The default | Cards show its name, price, saving and photo; the product page opens on it |
+
+On product.html, `<lk-packs>` shows the sets as choices: empty, LINKDGER's plain choices; with the theme's design inside, repeated for each set. Choosing one changes the elements marked `data-lk-price`, `data-lk-old`, `data-lk-save`, `data-lk-unit` and `data-lk-pack-name` (their text), `img[data-lk-image]` (its photo), what the page's own `<lk-add-to-cart>` adds, and `<lk-product-gallery>` moves to the set's photo.
+
+```html
+<p class="price"><b data-lk-price>{{ product.price }}</b> <s data-lk-old>{{ product.old }}</s> <small data-lk-unit>{{ product.unit }}</small></p>
+<p class="save" data-lk-save>{{ product.save }}</p>
+<lk-packs label="Choose a colour">
+  <img src="{{ pack.image }}" alt=""> <b>{{ pack.name }}</b> {{ pack.price }} <s>{{ pack.old }}</s> <em>{{ pack.save }}</em>
+</lk-packs>
+<lk-add-to-cart text="Add to cart"></lk-add-to-cart>
+```
+
+| Inside `<lk-packs>` | What it is |
+|---|---|
+| `{{ pack.name }}`, `{{ pack.price }}` | A set's name and price |
+| `{{ pack.old }}`, `{{ pack.save }}` | Its struck price and "Save Rs …", or empty |
+| `{{ pack.count }}`, `{{ pack.unit }}` | "12 pieces" for a bigger pack; "1 piece: Rs 100" or "per piece" |
+| `{{ pack.image }}` | Its own photo, else the product's first |
+
+- Inside `<lk-packs>` use text and pictures only: each set is already a button (no links or buttons in it).
+- Style `.lk-pack` and the chosen `.lk-pack.on`; hide what is empty with `[data-lk-old]:empty{display:none}`.
+- A product with one choice shows no `<lk-packs>`.
+
 ### products.json: products the theme brings
 
 Put `products.json` next to index.html, with its photos inside the theme. After a push, the version in the app lists them: **found** (the shop has the SKU), **new** (in products.json, not in the shop) and **missing** (a page uses it, but it is in neither). The seller checks the new ones in the app and adds them; the AI cannot add products. The plan's product limit counts.
@@ -236,7 +273,11 @@ Put `products.json` next to index.html, with its photos inside the theme. After 
       "category": "home.kitchenware",
       "description": "A clear 1 litre glass bottle with a black metal cap.",
       "photos": ["products/bottle-1.webp", "products/bottle-2.webp"],
-      "packs": [{ "name": "Set of 3", "price": 3500 }]
+      "packs": [
+        { "name": "Launch price", "price": 1150, "default": true },
+        { "name": "Amber", "price": 1300, "photo": "products/bottle-amber.webp" },
+        { "name": "Set of 3", "price": 3500, "count": 3 }
+      ]
     }
   ]
 }
@@ -251,7 +292,7 @@ Put `products.json` next to index.html, with its photos inside the theme. After 
 | `category` | A category id from the list below |
 | `description` | Up to 2,000 characters |
 | `photos` | Files of the theme (`.webp`, `.png` or `.jpg`), up to 20 |
-| `packs` | Other packs, each with its `name` and `price` |
+| `packs` | Its sets: each with `name` and `price`; `count` (1 when left out; whole for pieces, boxes and the like); `photo` (a theme photo, added to the product's photos); `default: true` for the one shown first |
 
 Up to 200 products. To show on the website a product needs **2 photos, a category and a description** (LINKDGER's rule for every product on the web).
 

@@ -174,6 +174,16 @@ lk-scene.hero-scene{position:absolute;inset:0;width:100%;height:100%}
 .product-info h1{font-size:clamp(36px,5vw,68px);line-height:1;text-wrap:balance}
 .price{display:flex;align-items:baseline;gap:10px;font-size:clamp(26px,2.8vw,36px);font-weight:800;letter-spacing:-.02em}
 .price small{font-size:16px;color:var(--o-muted);font-weight:600}
+/* A product's sets (<lk-packs>): the chosen one has the accent ring; an empty struck price or saving takes no room. */
+.price s{font-size:.6em;color:var(--o-muted);font-weight:600}.price s:empty,.save:empty,.pack-save:empty,.pack-text s:empty,.card-save:empty{display:none}
+.save{color:#3DDC97;font-weight:800;margin-top:-8px}
+.product-info .lk-packs{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:0}
+.product-info .lk-pack{display:flex;align-items:center;gap:10px;min-height:60px;padding:8px 12px 8px 8px;border-radius:18px;border:1px solid var(--o-line);
+ background:var(--o-surface);color:var(--o-text);text-align:left;transition:border-color .2s,box-shadow .2s}
+.product-info .lk-pack:hover{border-color:rgba(255,255,255,.3)}.product-info .lk-pack.on{border-color:var(--o-accent);box-shadow:0 0 0 1px var(--o-accent) inset}
+.pack-img{width:44px;height:44px;border-radius:12px;object-fit:cover;flex:none;background:var(--o-surface-2)}
+.pack-text{display:flex;flex-direction:column;min-width:0}.pack-text b{font-size:15px}.pack-text small{color:var(--o-muted);font-size:13px}
+.pack-save,.card-save{margin-left:auto;font-style:normal;color:#3DDC97;font-size:12px;font-weight:800;white-space:nowrap}
 .stock{font-weight:700;color:#7EE2A8}.stock:empty{display:none}
 .product-info .lk-add-to-cart{min-height:56px;border-radius:999px;font-size:17px}
 .about{color:#C9CDD5;font-size:17px;white-space:pre-line}
