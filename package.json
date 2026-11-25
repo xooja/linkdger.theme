@@ -1,0 +1,22 @@
+{
+  "name": "linkdger-theme",
+  "version": "1.0.0",
+  "description": "Make your LINKDGER shop's website theme on your computer: a dev copy that updates as you save, the app's check and new versions.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "linkdger-theme": "cli/linkdger-theme.mjs"
+  },
+  "files": [
+    "cli/",
+    "linkdger-orbit/"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://linkdger.com/themes/guide",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xooja/linkdger.theme.git"
+  }
+}
