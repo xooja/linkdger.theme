@@ -16,7 +16,7 @@ import readline from 'node:readline/promises';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 
-const VERSION = '1.0.0';
+const VERSION = '1.0.1';
 const API = (process.env.LINKDGER_API || 'https://linkdger.com/api/theme-cli').replace(/\/+$/, '');
 const CONFIG_DIR = process.env.LINKDGER_CONFIG_DIR || path.join(os.homedir(), '.linkdger');
 const CONFIG = path.join(CONFIG_DIR, 'theme-tool.json');
@@ -71,20 +71,31 @@ function forget() {
 }
 
 // ---------- LINKDGER ----------
-async function call(method, p, {key, json, text, form} = {}) {
+/** One call to LINKDGER. A call that is safe to send again (every one but push) tries up to 3 times when the network drops for a moment or
+ *  LINKDGER is busy (502, 503, 504). */
+async function call(method, p, {key, json, text, form, once = false} = {}) {
   const headers = {'User-Agent': UA, Accept: 'application/json'};
   if (key) headers.Authorization = 'Bearer ' + key;
   let body;
   if (json !== undefined) { headers['Content-Type'] = 'application/json'; body = JSON.stringify(json); }
   else if (text !== undefined) { headers['Content-Type'] = 'text/plain'; body = text; }
   else if (form) body = form;
-  let r;
-  try { r = await fetch(API + p, {method, headers, body}); }
-  catch (e) { throw new Fail('Could not reach LINKDGER. Check the internet and try again.' + (process.env.DEBUG ? ` (${e.message})` : '')); }
-  const raw = await r.text();
-  let data = null;
-  try { data = raw ? JSON.parse(raw) : null; } catch {}
-  return {status: r.status, data};
+  const tries = once ? 1 : 3;
+  for (let i = 1; ; i++) {
+    let status, raw;
+    try {
+      const r = await fetch(API + p, {method, headers, body});
+      status = r.status;
+      raw = await r.text();
+    } catch (e) {
+      if (i < tries) { await sleep(1000 * i); continue; }
+      throw new Fail('Could not reach LINKDGER. Check the internet and try again.' + (process.env.DEBUG ? ` (${e.message})` : ''));
+    }
+    if ((status === 502 || status === 503 || status === 504) && i < tries) { await sleep(1000 * i); continue; }
+    let data = null;
+    try { data = raw ? JSON.parse(raw) : null; } catch {}
+    return {status, data};
+  }
 }
 function problem(res) {
   const m = res.data?.error?.message;
@@ -225,7 +236,11 @@ async function login() {
 async function logout() {
   const a = account();
   if (!a) { say('  Not signed in here.'); return; }
-  await call('POST', '/logout', {key: a.key}).catch(() => null);
+  // Signed out only when LINKDGER ended the key (or it had ended already); else the key stays here, to try again.
+  const res = await call('POST', '/logout', {key: a.key}).catch((e) => { if (e instanceof Fail) return null; throw e; });
+  if (!res || (res.status !== 200 && res.status !== 401)) {
+    throw new Fail(`Could not sign out on LINKDGER${res ? ` (${problem(res)})` : ''}. This computer is still signed in: run logout again, or remove it on https://linkdger.com/themes/cli`);
+  }
   forget();
   say(`${green('  Signed out.')} This computer cannot change your theme any more.`);
 }
@@ -357,7 +372,8 @@ async function push(folder = '.') {
   const form = new FormData();
   form.append('file', zipBlob(bytes), path.basename(root) + '.zip');
   say(`  Uploading ${mb(bytes.length)}…`);
-  const up = await signedIn('POST', '/push', {form});
+  // Sent once: a second try after a dropped line could make two versions.
+  const up = await signedIn('POST', '/push', {form, once: true});
   if (up.status !== 201) throw new Fail(problem(up));
   const id = up.data.version.id;
   let v = null;
