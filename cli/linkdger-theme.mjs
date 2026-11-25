@@ -16,7 +16,7 @@ import readline from 'node:readline/promises';
 import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 
-const VERSION = '1.0.1';
+const VERSION = '1.0.2';
 const API = (process.env.LINKDGER_API || 'https://linkdger.com/api/theme-cli').replace(/\/+$/, '');
 const CONFIG_DIR = process.env.LINKDGER_CONFIG_DIR || path.join(os.homedir(), '.linkdger');
 const CONFIG = path.join(CONFIG_DIR, 'theme-tool.json');
@@ -29,7 +29,8 @@ const KINDS = new Set(['html', 'htm', 'css', 'json', 'png', 'jpg', 'jpeg', 'gif'
   'mp4', 'webm', 'mp3', 'ogg', 'glb', 'gltf', 'bin', 'usdz', 'riv']);
 // Squeezed in the .zip (the others are squeezed already).
 const TEXT = new Set(['html', 'htm', 'css', 'json', 'svg', 'gltf', 'bin', 'ico', 'ttf', 'otf']);
-const QUIET = /(^|\/)(__MACOSX|node_modules|\.[^/]*|Thumbs\.db|desktop\.ini|README(\.[a-z]+)?|LICENSE(\.[a-z]+)?)(\/|$)/i;
+// AI tools' instruction files (AGENTS.md, CLAUDE.md, GEMINI.md) stay on your computer quietly, as README and LICENSE do.
+const QUIET = /(^|\/)(__MACOSX|node_modules|\.[^/]*|Thumbs\.db|desktop\.ini|README(\.[a-z]+)?|LICENSE(\.[a-z]+)?|AGENTS\.md|CLAUDE\.md|GEMINI\.md)(\/|$)/i;
 const MAX_FILES = 2000, FILE_MAX = 25 * 1048576, UPLOAD_MAX = 95 * 1048576, BATCH = 60 * 1048576;
 
 // ---------- Output ----------

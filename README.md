@@ -36,6 +36,13 @@ npx github:xooja/linkdger.theme push             # a new version, checked as in 
   shows in the terminal and the last good copy stays.
 - For shops on Pro, Max and VIP. The tool's code is in `cli/linkdger-theme.mjs`.
 
+## Make it with AI
+
+Any AI coding tool (Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, Windsurf and others) can make a theme with you through the tool.
+`AGENTS.md` (here, and in every folder made with `init`) is the whole reference for the AI, also at https://linkdger.com/themes/llms.txt;
+`CLAUDE.md`, `GEMINI.md` and `.github/copilot-instructions.md` point to it. The steps and a prompt to copy: https://linkdger.com/themes/ai.
+The AI makes a version live only when you say so.
+
 ## Use Orbit without the tool
 
 1. Download this repository (Code → Download ZIP) or clone it.
@@ -52,6 +59,7 @@ preview link, to see it with your shop's data and LINKDGER's animation kit.
 | Path | What it is |
 |---|---|
 | `cli/linkdger-theme.mjs` | The theme tool (`package.json` makes it the `npx` command) |
+| `AGENTS.md`, `linkdger-orbit/AGENTS.md` | The reference for AI coding tools (with `CLAUDE.md`, `GEMINI.md` and `.github/copilot-instructions.md` pointing to it) |
 | `linkdger-orbit/index.html` | The home page: a 3D scene, a product in 3D, ordering steps, the shop's products, a bundle, numbers, visit |
 | `linkdger-orbit/story.html` | An extra page at `/story`: typewriter, parallax, a scroll scrub, a pinned 3D scene, pointer layers |
 | `linkdger-orbit/product.html`, `products.html`, `category.html`, `404.html` | A product's page, Shop all, a category's page, not found |

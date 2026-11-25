@@ -1,0 +1,3 @@
+This folder is a shop's website theme on LINKDGER. Follow AGENTS.md at the folder's top: the whole reference, also at https://linkdger.com/themes/llms.txt.
+
+In short: a theme has no JavaScript (movement and 3D come from LINKDGER's data-lk-* animation kit and <lk-…> tags); never a password or code field; the shop's name, products, prices and photos only through {{ values }} and <lk-…> parts; every picture, font and 3D file inside the folder. Send the work with `npx github:xooja/linkdger.theme dev` (the dev copy) and `push` (a new version), and make a version live only when the seller asks.
